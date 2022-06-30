@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/CodelyTV/golang-examples/03-reading_files/internal/cli"
+	"github.com/jlezcanof/golang-examples/03-reading_files/internal/cli"
 	"github.com/spf13/cobra"
 )
 

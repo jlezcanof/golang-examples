@@ -35,6 +35,7 @@ func runBeersFn() CobraFn {
 		reader := bufio.NewReader(f)
 
 		var beers = make(map[int]string)
+		// beers:= make(es lo mismo)
 
 		for line := readLine(reader); line != nil; line = readLine(reader) {
 			values := strings.Split(string(line), ",")
