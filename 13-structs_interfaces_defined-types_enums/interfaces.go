@@ -1,9 +1,17 @@
 package main
 
-func send(encrypter interface{ Encrypt([]byte) string }) {
+type Encrypter interface {
+	Encrypt([]byte) string
+}
+
+type Decrypter interface {
+	Decrypt(string, interface{}) error
+}
+
+func send(encrypter Encrypter) {
 	// method implementation
 }
 
-func receive(decrypter interface{ Decrypt([]byte) string }) {
+func receive(decrypter Decrypter) {
 	// method implementation
 }
