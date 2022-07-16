@@ -5,7 +5,7 @@ import (
 	"log"
 	"strconv"
 
-	"github.com/CodelyTV/golang-examples/11-sharing_memory_concurrency/internal/fetching"
+	"github.com/jlezcanof/golang-examples/11-sharing_memory_concurrency/internal/fetching"
 	"github.com/spf13/cobra"
 )
 

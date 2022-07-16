@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func main() {
+func maps() {
 
 	b := make(map[string]float32)
 

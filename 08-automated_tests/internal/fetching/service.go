@@ -1,7 +1,7 @@
 package fetching
 
 import (
-	beerscli "github.com/CodelyTV/golang-examples/08-automated_tests/internal"
+	beerscli "github.com/jlezcanof/golang-examples/08-automated_tests/internal"
 	"github.com/pkg/errors"
 )
 

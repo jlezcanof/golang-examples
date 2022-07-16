@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func main() {
+func slices() {
 
 	beers := make([]string, 3)
 	fmt.Println("empty slice:", beers)

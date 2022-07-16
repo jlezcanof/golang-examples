@@ -3,7 +3,6 @@ module github.com/jlezcanof/golang-examples
 go 1.18
 
 require (
-	github.com/jlezcanof/golang-examples v0.0.0-20210505174613-ec028e2d5c88
 	github.com/json-iterator/go v1.1.11
 	github.com/pkg/errors v0.9.1
 	github.com/spf13/cobra v0.0.7
