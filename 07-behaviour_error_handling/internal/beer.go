@@ -2,6 +2,8 @@ package beerscli
 
 import (
 	"encoding/json"
+
+	"github.com/jlezcanof/golang-examples/07-behaviour_error_handling/internal/errors"
 )
 
 // Beer representation of beer into data struct
@@ -66,7 +68,8 @@ func (t *BeerType) UnmarshalJSON(b []byte) error {
 	var j string
 	err := json.Unmarshal(b, &j)
 	if err != nil {
-		return err
+		//return err
+		return errors.UnmarshallError(err, "Could not convert retrieved byters to JSON")
 	}
 	*t = toID[j]
 	return nil

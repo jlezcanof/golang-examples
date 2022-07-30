@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	beerscli "github.com/jlezcanof/golang-examples/07-behaviour_error_handling/internal"
+	"github.com/jlezcanof/golang-examples/07-behaviour_error_handling/internal/errors"
 )
 
 type repository struct {
@@ -19,15 +20,28 @@ func NewRepository() beerscli.BeerRepo {
 
 // GetBeers fetch beers data from csv
 func (r *repository) GetBeers() ([]beerscli.Beer, error) {
-	f, _ := os.Open("07-behaviour_error_handling/data/beers.csv")
+	const filePath = "07-behaviour_error_handling/data/beers.csv"
+	f, error := os.Open(filePath)
+
+	if error != nil {
+		return nil, errors.TreatmentFileError(error, "error opening file %s", filePath)
+	}
 	reader := bufio.NewReader(f)
 
 	var beers []beerscli.Beer
 
-	for line := readLine(reader); line != nil; line = readLine(reader) {
+	for line, err := readLine(reader); line != nil; line, err = readLine(reader) {
+		if err != nil {
+			return nil, err
+		}
 		values := strings.Split(string(line), ",")
 
-		productID, _ := strconv.Atoi(values[0])
+		var productID int
+		productID, err := strconv.Atoi(values[0])
+
+		if err != nil {
+			return nil, errors.WraperConversionError(err, "error while converting 'productId' from ascii to integer: %s", values[0])
+		}
 
 		beer := beerscli.NewBeer(
 			productID,
@@ -45,7 +59,10 @@ func (r *repository) GetBeers() ([]beerscli.Beer, error) {
 	return beers, nil
 }
 
-func readLine(reader *bufio.Reader) (line []byte) {
-	line, _, _ = reader.ReadLine()
+func readLine(reader *bufio.Reader) (line []byte, err error) {
+	line, _, err = reader.ReadLine()
+	if err != nil {
+		return nil, errors.TreatmentFileError(err, "could not read next line of bufffer")
+	}
 	return
 }
